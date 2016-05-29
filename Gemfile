@@ -45,3 +45,9 @@ group :development do
   gem 'spring'
 end
 
+
+gem "starter_generators", :git => "http://github.com/raghubetina/starter_generators.git"
+
+gem 'faker'
+
+gem 'devise'

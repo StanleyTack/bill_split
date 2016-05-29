@@ -1,0 +1,64 @@
+<!-- Validation failure messages -->
+<% if @payment.errors.any? %>
+  <% @payment.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Edit Payment #<%= @payment.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/update_payment/<%= @payment.id %>" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for payer_id -->
+      <div class="form-group">
+        <label for="payer_id" class="control-label">
+          Payer
+        </label>
+
+        <input type="text" id="payer_id" name="payer_id" placeholder="Payer" class="form-control" value="<%= @payment.payer_id %>">
+      </div>
+
+      <!-- Label and input for payee_id -->
+      <div class="form-group">
+        <label for="payee_id" class="control-label">
+          Payee
+        </label>
+
+        <input type="text" id="payee_id" name="payee_id" placeholder="Payee" class="form-control" value="<%= @payment.payee_id %>">
+      </div>
+
+      <!-- Label and input for currency -->
+      <div class="form-group">
+        <label for="currency" class="control-label">
+          Currency
+        </label>
+
+        <input type="text" id="currency" name="currency" placeholder="Currency" class="form-control" value="<%= @payment.currency %>">
+      </div>
+
+      <!-- Label and input for value -->
+      <div class="form-group">
+        <label for="value" class="control-label">
+          Value
+        </label>
+
+        <input type="text" id="value" name="value" placeholder="Value" class="form-control" value="<%= @payment.value %>">
+      </div>
+
+      <button class="btn btn-warning">
+        Update Payment
+      </button>
+      or
+      <a href="/payments/<%= @payment.id %>">Cancel</a>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,82 @@
+<!-- Validation failure messages -->
+<% if @transaction.errors.any? %>
+  <% @transaction.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Add Transaction</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_transaction" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for description -->
+      <div class="form-group">
+        <label for="description" class="control-label">
+          Description
+        </label>
+
+        <input type="text" id="description" name="description" placeholder="Description" class="form-control" value="<%= @transaction.description %>">
+      </div>
+
+      <!-- Label and input for notes -->
+      <div class="form-group">
+        <label for="notes" class="control-label">
+          Notes
+        </label>
+
+        <textarea id="notes" name="notes" placeholder="Notes" class="form-control" rows="3"><%= @transaction.notes %></textarea>
+      </div>
+
+      <!-- Label and input for currency -->
+      <div class="form-group">
+        <label for="currency" class="control-label">
+          Currency
+        </label>
+
+        <input type="text" id="currency" name="currency" placeholder="Currency" class="form-control" value="<%= @transaction.currency %>">
+      </div>
+
+      <!-- Label and input for value -->
+      <div class="form-group">
+        <label for="value" class="control-label">
+          Value
+        </label>
+
+        <input type="text" id="value" name="value" placeholder="Value" class="form-control" value="<%= @transaction.value %>">
+      </div>
+
+      <!-- Label and input for payer_id -->
+      <div class="form-group">
+        <label for="payer_id" class="control-label">
+          Payer
+        </label>
+
+        <input type="text" id="payer_id" name="payer_id" placeholder="Payer" class="form-control" value="<%= @transaction.payer_id %>">
+      </div>
+
+      <!-- Label and input for group_id -->
+      <div class="form-group">
+        <label for="group_id" class="control-label">
+          Group
+        </label>
+
+        <input type="text" id="group_id" name="group_id" placeholder="Group" class="form-control" value="<%= @transaction.group_id %>">
+      </div>
+
+      <button class="btn btn-success">
+        Create Transaction
+      </button>
+      or
+      <a href="/transactions">Cancel</a>
+    </form>
+  </div>
+</div>
